@@ -1,4 +1,4 @@
-# app/app.py
+# messaging_system/app.py
 from flask import Flask, request
 import smtplib
 import logging
@@ -13,7 +13,7 @@ app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
-logging.basicConfig(filename='/var/log/messaging_system.log', level=logging.INFO)
+logging.basicConfig(filename='messaging_system.log', level=logging.INFO)
 
 @celery.task
 def send_email(recipient):
